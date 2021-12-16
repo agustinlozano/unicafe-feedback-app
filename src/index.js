@@ -1,71 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = ({ course }) => {
-  return (
-    <h1>{course.name}</h1>
-  );
-}
+const H2 = (props) =>
+  <h2>{props.text}</h2>
 
-const Part = (props) => {
-  return (
-    <p>
-      {props.name} {props.exercises}
-    </p>
-  );
-}
+const Button = (props) =>
+  <button onClick={props.handler}>
+    {props.text}
+  </button>
 
-const Content = ({ parts }) => {
-  return (
-    <div>
-      <Part
-        name={parts[0].name}
-        exercises={parts[0].exercises}
-      />
-      <Part
-        name={parts[1].name}
-        exercises={parts[1].exercises}
-      />
-      <Part
-        name={parts[2].name}
-        exercises={parts[2].exercises}
-      />
-    </div>
-  );
-}
-
-const Total = ({ parts }) => {
-  return (
-    <p>Number of exercises {parts[0].exercises + parts[1].exercises + parts[2].exercises}</p>
-  );
-}
+const Stat = (props) => 
+  <p>{props.opinion}:{props.number}</p>
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  } 
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const goodHanlder = () => setGood(good + 1);
+  const neutralHandler = () => setNeutral(neutral + 1);
+  const badHandler = () => setBad(bad + 1);
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <H2 text='Give feedback' />
+      <Button handler={goodHanlder} text='good' />
+      <Button handler={neutralHandler} text='neutral' />
+      <Button handler={badHandler} text='bad' />
+      
+      <H2 text='Statistics' />
+      <Stat opinion='good' number={good} />
+      <Stat opinion='neutral' number={neutral} />
+      <Stat opinion='bad' number={bad} />
     </div>
-  );
+  )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, 
+  document.getElementById('root')
+)

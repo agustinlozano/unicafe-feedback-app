@@ -15,7 +15,6 @@ const Stat = (props) =>
 const Statistics = (props) => {
   return (
     <div id='statistics'>
-      <H2 text='Statistics' />
       <Stat opinion='good' number={props.goodOp} />
       <Stat opinion='neutral' number={props.neutralOp} />
       <Stat opinion='bad' number={props.badOp} />
@@ -47,6 +46,8 @@ const App = () => {
         <Button handler={goodHanlder} text='good' />
         <Button handler={neutralHandler} text='neutral' />
         <Button handler={badHandler} text='bad' />
+
+        <H2 text='Statistics' />
         <Statistics 
           goodOp={good}
           neutralOp={neutral}
@@ -55,9 +56,10 @@ const App = () => {
           avg={avg}
           rate={goodRate}  
         />
+
       </div>
     );
-    
+
   } else {
     return (
       <div>

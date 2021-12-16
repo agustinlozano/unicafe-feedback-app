@@ -33,11 +33,6 @@ const App = () => {
 
   const total = good+neutral+bad; 
 
-  let goodRate = 0;
-  (total === 0) ? goodRate = 0 : goodRate = good * 100 / total;
-  let badRate = 0;
-  (total === 0) ? badRate = 0 : badRate = bad * 100 / total;
-
   let avg;
   if (good === 0 && neutral === 0 && bad === 0) {
     avg = 0;
@@ -46,6 +41,9 @@ const App = () => {
   } else {
     avg = ((neutral - 2 * bad) / (2 * total));
   }
+
+  let goodRate = 0;
+  (total === 0) ? goodRate = 0 : goodRate = good * 100 / total;
 
   return (
     <div>

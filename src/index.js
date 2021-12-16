@@ -12,15 +12,6 @@ const Button = (props) =>
 const Stat = (props) => 
   <p>{props.opinion}: <strong>{props.number}</strong></p>
 
-const Total = (props) =>
-  <p>all: <strong>{props.all}</strong></p>
-
-const Average = (props) =>
-  <p>average: <strong>{props.avg}</strong></p>
-
-const Positive = (props) =>
-  <p>positive: <strong>{props.rate}%</strong></p>
-
 const Statistics = (props) => {
   return (
     <div id='statistics'>
@@ -28,9 +19,9 @@ const Statistics = (props) => {
       <Stat opinion='good' number={props.goodOp} />
       <Stat opinion='neutral' number={props.neutralOp} />
       <Stat opinion='bad' number={props.badOp} />
-      <Total all={props.all} />
-      <Average avg={props.avg} />
-      <Positive rate={props.rate} />
+      <Stat opinion='all' number={props.all} />
+      <Stat opinion='average' number={props.avg} />
+      <Stat opinion='positive' number={`${props.rate}%`} />
     </div>
   );
 }
@@ -64,7 +55,7 @@ const App = () => {
         rate={goodRate}  
       />
     </div>
-  )
+  );
 }
 
 function calculateAvg(good, neutral, bad, total) {
@@ -76,17 +67,15 @@ function calculateAvg(good, neutral, bad, total) {
   } else {
     avg = ((neutral - 2 * bad) / (2 * total));
   }
-
   return avg;
 }
 
 function calculateGoodRate(good, total) {
   let rate;
   (total === 0) ? rate = 0 : rate = good * 100 / total;
-  
   return rate;
 }
 
 ReactDOM.render(<App />, 
   document.getElementById('root')
-)
+);

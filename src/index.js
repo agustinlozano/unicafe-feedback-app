@@ -42,9 +42,9 @@ const App = () => {
   if (good === 0 && neutral === 0 && bad === 0) {
     avg = 0;
   } else if (good > bad) {
-    avg = ((goodRate - ((neutral * 100 / total) / 2)) / 100);
+    avg = ((2 * good - neutral) / (2 * total));
   } else {
-    avg = ((-badRate + ((neutral * 100 / total) / 2)) / 100);
+    avg = ((neutral - 2 * bad) / (2 * total));
   }
 
   return (

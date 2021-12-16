@@ -9,19 +9,27 @@ const Button = (props) =>
     {props.text}
   </button>
 
-const Stat = (props) => 
-  <p>{props.opinion}: <strong>{props.number}</strong></p>
+const Stat = (props) => {
+  return(
+    <tr>
+      <td>{props.opinion}</td>
+      <td><strong>{props.number}</strong></td>
+    </tr>
+  );
+}
 
 const Statistics = (props) => {
   return (
-    <div id='statistics'>
-      <Stat opinion='good' number={props.goodOp} />
-      <Stat opinion='neutral' number={props.neutralOp} />
-      <Stat opinion='bad' number={props.badOp} />
-      <Stat opinion='all' number={props.all} />
-      <Stat opinion='average' number={props.avg} />
-      <Stat opinion='positive' number={`${props.rate}%`} />
-    </div>
+    <table>
+        <tbody>
+        <Stat opinion='good' number={props.goodOp} />
+        <Stat opinion='neutral' number={props.neutralOp} />
+        <Stat opinion='bad' number={props.badOp} />
+        <Stat opinion='all' number={props.all} />
+        <Stat opinion='average' number={props.avg} />
+        <Stat opinion='positive' number={`${props.rate}%`} />
+      </tbody>
+    </table>
   );
 }
 

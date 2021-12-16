@@ -40,22 +40,35 @@ const App = () => {
   let avg = calculateAvg(good, neutral, bad, total);
   let goodRate = calculateGoodRate(good, total);
 
-  return (
-    <div>
-      <H2 text='Give feedback' />
-      <Button handler={goodHanlder} text='good' />
-      <Button handler={neutralHandler} text='neutral' />
-      <Button handler={badHandler} text='bad' />
-      <Statistics 
-        goodOp={good}
-        neutralOp={neutral}
-        badOp={bad}
-        all={total}
-        avg={avg}
-        rate={goodRate}  
-      />
-    </div>
-  );
+  if (good !== 0 || neutral !== 0 || bad !== 0) {
+    return (
+      <div>
+        <H2 text='Give feedback' />
+        <Button handler={goodHanlder} text='good' />
+        <Button handler={neutralHandler} text='neutral' />
+        <Button handler={badHandler} text='bad' />
+        <Statistics 
+          goodOp={good}
+          neutralOp={neutral}
+          badOp={bad}
+          all={total}
+          avg={avg}
+          rate={goodRate}  
+        />
+      </div>
+    );
+    
+  } else {
+    return (
+      <div>
+        <H2 text='Give feedback' />
+        <Button handler={goodHanlder} text='good' />
+        <Button handler={neutralHandler} text='neutral' />
+        <Button handler={badHandler} text='bad' />
+        <H2 text='No feedback given' />
+      </div>
+    )
+  }
 }
 
 function calculateAvg(good, neutral, bad, total) {
